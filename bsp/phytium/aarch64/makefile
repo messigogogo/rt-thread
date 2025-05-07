@@ -26,6 +26,10 @@ ifdef CONFIG_TARGET_PHYTIUMPI
 RTCONFIG := phytium_pi
 endif
 
+ifdef CONFIG_TARGET_PD2408
+RTCONFIG := pd2408_test
+endif
+
 ifdef CONFIG_RT_USING_SMART
 RTCONFIG := $(RTCONFIG)_rtsmart
 else
@@ -154,4 +158,16 @@ load_phytium_pi_rtthread:
 	@echo "Load configs from ./configs/phytium_pi_rtthread"
 	@cp ./configs/phytium_pi_rtthread ./.config -f
 	@cp ./configs/phytium_pi_rtthread.h ./rtconfig.h -f
+	@scons -c
+
+load_pd2408_test_rtthread:
+	@echo "Load configs from ./configs/pd2408_test_rtthread"
+	@cp ./configs/pd2408_test_rtthread ./.config -f
+	@cp ./configs/pd2408_test_rtthread.h ./rtconfig.h -f
+	@scons -c
+
+load_pd2408_test_rtsmart:
+	@echo "Load configs from ./configs/pd2408_test_rtsmart"
+	@cp ./configs/pd2408_test_rtsmart ./.config -f
+	@cp ./configs/pd2408_test_rtsmart.h ./rtconfig.h -f
 	@scons -c

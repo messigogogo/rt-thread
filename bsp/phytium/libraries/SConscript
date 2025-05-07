@@ -50,6 +50,10 @@ if GetDepend(['TARGET_D2000']):
     src += Glob(cwd+'/port/soc_port/d2000/*.c')
     path += [PHYTIUM_SDK_DIR + '/soc/d2000'] 
 
+if GetDepend(['TARGET_PD2408']):
+    src += Glob(cwd+'/port/soc_port/pd2408/*.c')
+    path += [PHYTIUM_SDK_DIR + '/soc/pd2408'] 
+
 # board port
 if GetDepend(['E2000D_DEMO_BOARD']):
     path += cwd + '/fboard_port/e2000d_demo'

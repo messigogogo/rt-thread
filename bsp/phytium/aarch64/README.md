@@ -8,7 +8,7 @@
 ```shell
 mkdir tools
 ```
-注：使用RT-Smart编译链也可编译RT-Thread，但当前不支持C++
+注：使用RT-Smart编译链也可编译RT-Thread，但当前不支持C++。确认当前`scons`版本在4.7.0以上。
 
 ### Ubuntu 环境
 

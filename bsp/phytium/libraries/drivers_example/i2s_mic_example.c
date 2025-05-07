@@ -25,22 +25,16 @@ int pcm_record()
         rt_kprintf("open file for recording failed!\n");
         return -1;
     }
-    rt_kprintf("1\n");
     buffer = rt_malloc(RECORD_CHUNK_SZ);
     if (buffer == RT_NULL)
         goto __exit;
-    rt_kprintf("2\n");
     mic_dev = rt_device_find(SOUND_DEVICE_NAME);
     if (mic_dev == RT_NULL)
         goto __exit;
-    rt_kprintf("3\n");
     rt_device_open(mic_dev, RT_DEVICE_OFLAG_RDONLY);
-    rt_kprintf("4\n");
     while (1)
     {
-        rt_kprintf("6\n");
         length = rt_device_read(mic_dev, 0, buffer, RECORD_CHUNK_SZ);
-        rt_kprintf("7\n");
         if (length)
         {
             write(fd, buffer, length);
