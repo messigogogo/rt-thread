@@ -25,6 +25,7 @@
 #include "fiopad.h"
 #include "fqspi_hw.h"
 #include "fio_mux.h"
+#include <string.h>
 
 #define QSPI_ALIGNED_BYTE 4
 
@@ -304,8 +305,11 @@ static rt_ssize_t phytium_qspi_xfer(struct rt_spi_device *device, struct rt_spi_
     const void *rcvb = message->recv_buf;
     const void *sndb = message->send_buf;
     qspi_bus = (phytium_qspi_bus *)(struct phytium_qspi_bus *) device->bus->parent.user_data;
-    uintptr addr = qspi_bus->fqspi.config.mem_start + qspi_bus->fqspi.config.channel * qspi_bus->fqspi.flash_size + flash_addr;
-
+    uintptr addr = flash_addr;
+    for (u32 index = 0; index < qspi_bus->fqspi.config.channel; index++)
+    {
+        addr = qspi_bus->fqspi.flash_size[index];
+    }
     /*Distinguish the write mode according to different commands*/
     if (cmd == FQSPI_FLASH_CMD_PP || cmd == FQSPI_FLASH_CMD_QPP || cmd == FQSPI_FLASH_CMD_4PP || cmd == FQSPI_FLASH_CMD_4QPP)
     {

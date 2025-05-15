@@ -219,7 +219,26 @@ menu "On-chip Peripheral Drivers"
                     default n
                 endif
             endif
-       
+
+    menuconfig BSP_USING_I2C_MSG
+        bool "Enable I2C Msg"
+        default n
+        select RT_USING_I2C
+        if BSP_USING_I2C_MSG
+            config RT_USING_I2C0_MSG
+                bool "Enable i2c0 msg"
+                default n
+            config RT_USING_I2C1_MSG
+                bool "Enable i2c1 msg"
+                default n
+            config RT_USING_I2C2_MSG
+                bool "Enable i2c2 msg"
+                default n
+            config RT_USING_I2C3_MSG
+                bool "Enable i2c3 msg"
+                default n
+            endif
+
     menuconfig BSP_USING_SDIF
         bool "Enable SDIF"
         default n

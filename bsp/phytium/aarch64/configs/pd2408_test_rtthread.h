@@ -545,6 +545,11 @@
 #define BSP_USING_UART
 #define RT_USING_UART0
 #define RT_USING_UART1
+#define BSP_USING_I2C_MSG
+#define RT_USING_I2C0_MSG
+#define RT_USING_I2C1_MSG
+#define RT_USING_I2C2_MSG
+#define RT_USING_I2C3_MSG
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */

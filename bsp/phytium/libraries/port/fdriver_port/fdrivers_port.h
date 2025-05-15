@@ -29,6 +29,9 @@
 /***************************** Include Files *********************************/
 #include "rtconfig.h"
 #include "ftypes.h"
+#include "fkernel.h"
+#include "fassert.h"
+#include "fio.h"
 #include "drv_log.h"
 #include "fkernel.h"
 #include "faarch.h"

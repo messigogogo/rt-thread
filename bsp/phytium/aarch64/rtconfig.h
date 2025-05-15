@@ -73,11 +73,12 @@
 /* end of rt_strnlen options */
 /* end of klibc options */
 #define RT_NAME_MAX 16
+#define RT_USING_SMART
 #define RT_USING_SMP
 #define RT_CPUS_NR 8
 #define RT_ALIGN_SIZE 4
-#define RT_THREAD_PRIORITY_256
-#define RT_THREAD_PRIORITY_MAX 256
+#define RT_THREAD_PRIORITY_32
+#define RT_THREAD_PRIORITY_MAX 32
 #define RT_TICK_PER_SECOND 1000
 #define RT_USING_OVERFLOW_CHECK
 #define RT_USING_HOOK
@@ -120,7 +121,7 @@
 #define RT_USING_DEVICE
 #define RT_USING_DEVICE_OPS
 #define RT_USING_CONSOLE
-#define RT_CONSOLEBUF_SIZE 512
+#define RT_CONSOLEBUF_SIZE 128
 #define RT_CONSOLE_DEVICE_NAME "uart1"
 #define RT_VER_NUM 0x50201
 #define RT_USING_STDC_ATOMIC
@@ -144,6 +145,7 @@
 #define ARCH_MM_MMU
 #define ARCH_ARM
 #define ARCH_ARM_MMU
+#define KERNEL_VADDR_START 0xffff000000000000
 #define ARCH_ARMV8
 #define ARCH_USING_ASID
 #define ARCH_USING_IRQ_CTX_LIST
@@ -175,11 +177,20 @@
 #define DFS_USING_POSIX
 #define DFS_USING_WORKDIR
 #define DFS_FD_MAX 16
-#define RT_USING_DFS_V1
-#define DFS_FILESYSTEMS_MAX 4
-#define DFS_FILESYSTEM_TYPES_MAX 4
+#define RT_USING_DFS_V2
 #define RT_USING_DFS_DEVFS
-#define RT_USING_DFS_RAMFS
+#define RT_USING_DFS_PTYFS
+#define RT_USING_PAGECACHE
+
+/* page cache config */
+
+#define RT_PAGECACHE_COUNT 4096
+#define RT_PAGECACHE_ASPACE_COUNT 1024
+#define RT_PAGECACHE_PRELOAD 4
+#define RT_PAGECACHE_HASH_NR 1024
+#define RT_PAGECACHE_GC_WORK_LEVEL 90
+#define RT_PAGECACHE_GC_STOP_LEVEL 70
+/* end of page cache config */
 /* end of DFS: device virtual file system */
 
 /* Device Drivers */
@@ -247,6 +258,9 @@
 #define RT_USING_POSIX_DEVIO
 #define RT_USING_POSIX_STDIO
 #define RT_USING_POSIX_POLL
+#define RT_USING_POSIX_EPOLL
+#define RT_USING_POSIX_SIGNALFD
+#define RT_SIGNALFD_MAX_NUM 10
 #define RT_USING_POSIX_TERMIOS
 #define RT_USING_POSIX_DELAY
 #define RT_USING_POSIX_CLOCK
@@ -330,9 +344,6 @@
 
 #define RT_USING_RYM
 #define YMODEM_USING_FILE_TRANSFER
-#define RT_USING_UTEST
-#define UTEST_THR_STACK_SIZE 4096
-#define UTEST_THR_PRIORITY 20
 #define RT_USING_RESOURCE_ID
 #define RT_USING_ADT
 #define RT_USING_ADT_AVL
@@ -350,6 +361,17 @@
 
 /* end of Debugging */
 /* end of Memory management */
+#define RT_USING_LWP
+#define LWP_USING_RUNTIME
+#define RT_LWP_MAX_NR 30
+#define LWP_TASK_STACK_SIZE 16384
+#define RT_CH_MSG_MAX_NR 1024
+#define LWP_TID_MAX_NR 64
+#define RT_LWP_SHM_MAX_NR 64
+#define RT_USING_LDSO
+#define LWP_USING_TERMINAL
+#define LWP_PTY_MAX_PARIS_LIMIT 64
+#define RT_USING_VDSO
 
 /* Using USB legacy version */
 
@@ -541,10 +563,14 @@
 
 /* On-chip Peripheral Drivers */
 
+#define BSP_USING_DRIVERS_EXAMPLE
 #define BSP_USING_IOPAD
 #define BSP_USING_UART
 #define RT_USING_UART0
 #define RT_USING_UART1
+#define BSP_USING_I2C
+#define I2C_USE_CONTROLLER
+#define RT_USING_I2C3
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */

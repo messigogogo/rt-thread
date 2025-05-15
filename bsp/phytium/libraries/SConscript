@@ -137,10 +137,15 @@ if GetDepend(['BSP_USING_PWM']):
     src += Glob(PHYTIUM_SDK_DIR+'/drivers/pwm/fpwm/*.c') + Glob(PORT_DRV_DIR+'/drv_pwm.c')
     path += [PHYTIUM_SDK_DIR + '/drivers/pwm/fpwm/']
 
-## i2C
+## i2c
 if GetDepend(['BSP_USING_I2C']):
     src += Glob(PHYTIUM_SDK_DIR+'/drivers/i2c/fi2c/*.c') + Glob(PORT_DRV_DIR+'/drv_i2c.c')
     path += [PHYTIUM_SDK_DIR + '/drivers/i2c/fi2c/']
+
+## i2c msg
+if GetDepend(['BSP_USING_I2C_MSG']):
+    src += Glob(PHYTIUM_SDK_DIR+'/drivers/i2c/fi2c_v2_0/*.c') + Glob(PORT_DRV_DIR+'/drv_i2c_msg.c')
+    path += [PHYTIUM_SDK_DIR + '/drivers/i2c/fi2c_v2_0/'] + [PHYTIUM_SDK_DIR + '/drivers/msg/']
 
 # fdriver dc
 if GetDepend(['BSP_USING_DC']):
