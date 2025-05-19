@@ -82,7 +82,12 @@ path += [PORT_DRV_DIR]
 ## spim
 if GetDepend(['BSP_USING_SPI']):
     src += Glob(PHYTIUM_SDK_DIR+'/drivers/spi/fspim/*.c') + Glob(PORT_DRV_DIR+'/drv_spi.c')
-    path += [PHYTIUM_SDK_DIR + '/drivers/spi/fspim'] 
+    path += [PHYTIUM_SDK_DIR + '/drivers/spi/fspim']
+
+## spim msg
+if GetDepend(['BSP_USING_SPI_MSG']):
+    src += Glob(PHYTIUM_SDK_DIR+'/drivers/spi/fspim_v2_0/*.c') + Glob(PORT_DRV_DIR+'/drv_spi_msg.c')
+    path += [PHYTIUM_SDK_DIR + '/drivers/spi/fspim_v2_0'] + [PHYTIUM_SDK_DIR + '/drivers/msg']
 
 ## serial
 if GetDepend(['BSP_USING_UART']):
@@ -188,6 +193,12 @@ if GetDepend(['FIREFLY_DEMO_BOARD']):
     if GetDepend(['BSP_USING_SDIF']):
         src += Glob(PHYTIUM_SDK_DIR+'/board/firefly/fsdif_timing.c')
 
+if GetDepend(['CUS_DEMO_BOARD']):
+    src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_a/fio_mux.c')
+    path += [PHYTIUM_SDK_DIR + '/board/pd2408_test_a/']
+
+    if GetDepend(['BSP_USING_SDIF']):
+        src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_a/fsdif_timing.c')
 
 LIBS    = []
 LIBPATH = []

@@ -252,7 +252,7 @@ static int spi_init(phytium_spi_bus *spi_bus)
 
 int rt_hw_spi_init(void)
 {
-    /* event creat */
+    /* event create */
     if (RT_EOK != rt_event_init(&rx_done_event, "rx_done_event", RT_IPC_FLAG_FIFO))
     {
         rt_kprintf("Create event failed.\n");

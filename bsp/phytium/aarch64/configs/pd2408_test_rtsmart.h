@@ -472,9 +472,29 @@
 
 /* end of STM32 HAL & SDK Drivers */
 
+/* Infineon HAL Packages */
+
+/* end of Infineon HAL Packages */
+
 /* Kendryte SDK */
 
 /* end of Kendryte SDK */
+
+/* WCH HAL & SDK Drivers */
+
+/* end of WCH HAL & SDK Drivers */
+
+/* AT32 HAL & SDK Drivers */
+
+/* end of AT32 HAL & SDK Drivers */
+
+/* HC32 DDL Drivers */
+
+/* end of HC32 DDL Drivers */
+
+/* NXP HAL & SDK Drivers */
+
+/* end of NXP HAL & SDK Drivers */
 /* end of HAL & SDK Drivers */
 
 /* sensors drivers */
@@ -560,6 +580,7 @@
 
 /* Hardware Drivers */
 
+#define DRV_DEBUG
 
 /* On-chip Peripheral Drivers */
 
@@ -567,6 +588,9 @@
 #define BSP_USING_UART
 #define RT_USING_UART0
 #define RT_USING_UART1
+#define BSP_USING_SPI_LAYER
+#define BSP_USING_SPI_MSG
+#define RT_USING_SPIM0_MSG
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */

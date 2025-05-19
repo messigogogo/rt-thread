@@ -33,23 +33,52 @@ menu "On-chip Peripheral Drivers"
                 default n
         endif
 
-    menuconfig BSP_USING_SPI
-        bool "Enable Spi"
+    menuconfig BSP_USING_SPI_LAYER
+        bool "Enable SPI Layer"
         default n
         select RT_USING_SPI
-        if BSP_USING_SPI
-            config RT_USING_SPIM0
-                bool "Enable spim0"
-                default n
-            config RT_USING_SPIM1
-                bool "Enable spim1"
-                default n
-            config RT_USING_SPIM2
-                bool "Enable spim2"
-                default n
-            config RT_USING_SPIM3
-                bool "Enable spim3"
-                default n
+        if BSP_USING_SPI_LAYER
+            choice
+                prompt "Select SPI Mode"
+                config BSP_USING_SPI
+                    bool "Standard SPI"
+                    help
+                        Use standard SPI communication mode
+                config BSP_USING_SPI_MSG
+                    bool "IOP message-based SPI"
+                    help
+                        Use IOP message-based SPI communication
+            endchoice
+
+            if BSP_USING_SPI
+                config RT_USING_SPIM0
+                    bool "Enable SPIM0"
+                    default n
+                config RT_USING_SPIM1
+                    bool "Enable SPIM1"
+                    default n
+                config RT_USING_SPIM2
+                    bool "Enable SPIM2"
+                    default n
+                config RT_USING_SPIM3
+                    bool "Enable SPIM3"
+                    default n
+            endif
+
+            if BSP_USING_SPI_MSG
+                config RT_USING_SPIM0_MSG
+                    bool "Enable SPIM0_MSG"
+                    default n
+                config RT_USING_SPIM1_MSG
+                    bool "Enable SPIM1_MSG"
+                    default n
+                config RT_USING_SPIM2_MSG
+                    bool "Enable SPIM2_MSG"
+                    default n
+                config RT_USING_SPIM3_MSG
+                    bool "Enable SPIM3_MSG"
+                    default n
+            endif
         endif
 
     menuconfig BSP_USING_CAN

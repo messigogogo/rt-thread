@@ -212,7 +212,6 @@
 #define RT_MMCSD_THREAD_PRIORITY 22
 #define RT_MMCSD_MAX_PARTITION 16
 #define RT_USING_SPI
-#define RT_USING_QSPI
 #define RT_USING_AUDIO
 #define RT_AUDIO_REPLAY_MP_BLOCK_SIZE 4096
 #define RT_AUDIO_REPLAY_MP_BLOCK_COUNT 2
@@ -450,9 +449,29 @@
 
 /* end of STM32 HAL & SDK Drivers */
 
+/* Infineon HAL Packages */
+
+/* end of Infineon HAL Packages */
+
 /* Kendryte SDK */
 
 /* end of Kendryte SDK */
+
+/* WCH HAL & SDK Drivers */
+
+/* end of WCH HAL & SDK Drivers */
+
+/* AT32 HAL & SDK Drivers */
+
+/* end of AT32 HAL & SDK Drivers */
+
+/* HC32 DDL Drivers */
+
+/* end of HC32 DDL Drivers */
+
+/* NXP HAL & SDK Drivers */
+
+/* end of NXP HAL & SDK Drivers */
 /* end of HAL & SDK Drivers */
 
 /* sensors drivers */
@@ -538,13 +557,18 @@
 
 /* Hardware Drivers */
 
+#define DRV_DEBUG
 
 /* On-chip Peripheral Drivers */
 
+#define BSP_USING_DRIVERS_EXAMPLE
 #define BSP_USING_IOPAD
 #define BSP_USING_UART
 #define RT_USING_UART0
 #define RT_USING_UART1
+#define BSP_USING_SPI_LAYER
+#define BSP_USING_SPI_MSG
+#define RT_USING_SPIM0_MSG
 #define BSP_USING_I2C_MSG
 #define RT_USING_I2C0_MSG
 #define RT_USING_I2C1_MSG
