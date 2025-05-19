@@ -46,6 +46,32 @@ choice
             source "$SDK_DIR/board/firefly/firefly.kconfig"
         endif
 
+    config PD2408_TEST_A_BOARD
+        select BSP_USING_IOPAD
+        bool
+        prompt "Use PD2408 test a board"
+        depends on TARGET_PD2408
+        help
+            select PD2408 test a board config
+        if PD2408_TEST_A_BOARD
+            config BOARD_NAME
+				string
+				default "test_a"
+            source "$SDK_DIR/board/pd2408_test_a/pd2408_test_a.kconfig"
+        endif    
+    config PD2408_TEST_B_BOARD
+        select BSP_USING_IOPAD
+        bool
+        prompt "Use PD2408 test b board"
+        depends on TARGET_PD2408
+        help
+            select PD2408 test b board config
+        if PD2408_TEST_B_BOARD
+            config BOARD_NAME
+				string
+				default "test_b"
+            source "$SDK_DIR/board/pd2408_test_b/pd2408_test_b.kconfig"
+        endif 
     config CUS_DEMO_BOARD
         select USE_IOMUX
         bool

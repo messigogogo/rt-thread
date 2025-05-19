@@ -48,7 +48,7 @@ static rt_err_t i2c_msg_config(struct phytium_i2c_msg_bus *i2c_bus)
     FI2cMsgCtrl *instance_p = &i2c_bus->i2c_handle;
     rt_uint32_t cpu_id = rt_hw_cpu_id();
     FError ret = FI2C_MSG_SUCCESS;
-
+    FIOPadSetI2CMux(instance_p->config.instance_id);
     /* Lookup default configs by instance id */
     config_p = FI2cMsgLookupConfig(instance_p->config.instance_id);
     input_cfg = *config_p;

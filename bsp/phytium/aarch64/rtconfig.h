@@ -73,9 +73,8 @@
 /* end of rt_strnlen options */
 /* end of klibc options */
 #define RT_NAME_MAX 16
-#define RT_USING_SMART
 #define RT_USING_SMP
-#define RT_CPUS_NR 8
+#define RT_CPUS_NR 2
 #define RT_ALIGN_SIZE 4
 #define RT_THREAD_PRIORITY_32
 #define RT_THREAD_PRIORITY_MAX 32
@@ -90,7 +89,6 @@
 #define RT_USING_TIMER_SOFT
 #define RT_TIMER_THREAD_PRIO 4
 #define RT_TIMER_THREAD_STACK_SIZE 8192
-#define RT_USING_CPU_USAGE_TRACER
 
 /* kservice options */
 
@@ -119,12 +117,10 @@
 #define RT_USING_HEAP
 /* end of Memory Management */
 #define RT_USING_DEVICE
-#define RT_USING_DEVICE_OPS
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 128
 #define RT_CONSOLE_DEVICE_NAME "uart1"
 #define RT_VER_NUM 0x50201
-#define RT_USING_STDC_ATOMIC
 #define RT_BACKTRACE_LEVEL_MAX_NR 32
 /* end of RT-Thread Kernel */
 
@@ -145,7 +141,6 @@
 #define ARCH_MM_MMU
 #define ARCH_ARM
 #define ARCH_ARM_MMU
-#define KERNEL_VADDR_START 0xffff000000000000
 #define ARCH_ARMV8
 #define ARCH_USING_ASID
 #define ARCH_USING_IRQ_CTX_LIST
@@ -177,20 +172,27 @@
 #define DFS_USING_POSIX
 #define DFS_USING_WORKDIR
 #define DFS_FD_MAX 16
-#define RT_USING_DFS_V2
+#define RT_USING_DFS_V1
+#define DFS_FILESYSTEMS_MAX 4
+#define DFS_FILESYSTEM_TYPES_MAX 4
+#define RT_USING_DFS_ELMFAT
+
+/* elm-chan's FatFs, Generic FAT Filesystem Module */
+
+#define RT_DFS_ELM_CODE_PAGE 437
+#define RT_DFS_ELM_WORD_ACCESS
+#define RT_DFS_ELM_USE_LFN_3
+#define RT_DFS_ELM_USE_LFN 3
+#define RT_DFS_ELM_LFN_UNICODE_0
+#define RT_DFS_ELM_LFN_UNICODE 0
+#define RT_DFS_ELM_MAX_LFN 255
+#define RT_DFS_ELM_DRIVES 2
+#define RT_DFS_ELM_MAX_SECTOR_SIZE 512
+#define RT_DFS_ELM_REENTRANT
+#define RT_DFS_ELM_MUTEX_TIMEOUT 3000
+/* end of elm-chan's FatFs, Generic FAT Filesystem Module */
 #define RT_USING_DFS_DEVFS
-#define RT_USING_DFS_PTYFS
-#define RT_USING_PAGECACHE
-
-/* page cache config */
-
-#define RT_PAGECACHE_COUNT 4096
-#define RT_PAGECACHE_ASPACE_COUNT 1024
-#define RT_PAGECACHE_PRELOAD 4
-#define RT_PAGECACHE_HASH_NR 1024
-#define RT_PAGECACHE_GC_WORK_LEVEL 90
-#define RT_PAGECACHE_GC_STOP_LEVEL 70
-/* end of page cache config */
+#define RT_USING_DFS_RAMFS
 /* end of DFS: device virtual file system */
 
 /* Device Drivers */
@@ -205,36 +207,12 @@
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
-#define RT_USING_SERIAL_BYPASS
-#define RT_USING_CAN
-#define RT_CAN_USING_HDR
-#define RT_CAN_USING_CANFD
 #define RT_USING_I2C
 #define RT_USING_I2C_BITOPS
 #define RT_USING_NULL
 #define RT_USING_ZERO
 #define RT_USING_RANDOM
-#define RT_USING_PWM
 #define RT_USING_RTC
-#define RT_USING_SDIO
-#define RT_SDIO_STACK_SIZE 8192
-#define RT_SDIO_THREAD_PRIORITY 15
-#define RT_MMCSD_STACK_SIZE 8192
-#define RT_MMCSD_THREAD_PRIORITY 22
-#define RT_MMCSD_MAX_PARTITION 16
-#define RT_USING_SPI
-#define RT_USING_AUDIO
-#define RT_AUDIO_REPLAY_MP_BLOCK_SIZE 4096
-#define RT_AUDIO_REPLAY_MP_BLOCK_COUNT 2
-#define RT_AUDIO_RECORD_PIPE_SIZE 2048
-#define RT_USING_BLK
-
-/* Partition Types */
-
-#define RT_BLK_PARTITION_DFS
-#define RT_BLK_PARTITION_EFI
-/* end of Partition Types */
-#define RT_USING_PIN
 #define RT_USING_KTIME
 /* end of Device Drivers */
 
@@ -256,10 +234,6 @@
 #define RT_USING_POSIX_FS
 #define RT_USING_POSIX_DEVIO
 #define RT_USING_POSIX_STDIO
-#define RT_USING_POSIX_POLL
-#define RT_USING_POSIX_EPOLL
-#define RT_USING_POSIX_SIGNALFD
-#define RT_SIGNALFD_MAX_NUM 10
 #define RT_USING_POSIX_TERMIOS
 #define RT_USING_POSIX_DELAY
 #define RT_USING_POSIX_CLOCK
@@ -360,17 +334,6 @@
 
 /* end of Debugging */
 /* end of Memory management */
-#define RT_USING_LWP
-#define LWP_USING_RUNTIME
-#define RT_LWP_MAX_NR 30
-#define LWP_TASK_STACK_SIZE 16384
-#define RT_CH_MSG_MAX_NR 1024
-#define LWP_TID_MAX_NR 64
-#define RT_LWP_SHM_MAX_NR 64
-#define RT_USING_LDSO
-#define LWP_USING_TERMINAL
-#define LWP_PTY_MAX_PARIS_LIMIT 64
-#define RT_USING_VDSO
 
 /* Using USB legacy version */
 
@@ -471,29 +434,9 @@
 
 /* end of STM32 HAL & SDK Drivers */
 
-/* Infineon HAL Packages */
-
-/* end of Infineon HAL Packages */
-
 /* Kendryte SDK */
 
 /* end of Kendryte SDK */
-
-/* WCH HAL & SDK Drivers */
-
-/* end of WCH HAL & SDK Drivers */
-
-/* AT32 HAL & SDK Drivers */
-
-/* end of AT32 HAL & SDK Drivers */
-
-/* HC32 DDL Drivers */
-
-/* end of HC32 DDL Drivers */
-
-/* NXP HAL & SDK Drivers */
-
-/* end of NXP HAL & SDK Drivers */
 /* end of HAL & SDK Drivers */
 
 /* sensors drivers */
@@ -521,9 +464,6 @@
 
 /* samples: kernel and components samples */
 
-#define PKG_USING_KERNEL_SAMPLES
-#define PKG_USING_KERNEL_SAMPLES_LATEST_VERSION
-#define PKG_USING_KERNEL_SAMPLES_EN
 /* end of samples: kernel and components samples */
 
 /* entertainment: terminal games and other interesting software packages */
@@ -583,17 +523,9 @@
 
 /* On-chip Peripheral Drivers */
 
-#define BSP_USING_DRIVERS_EXAMPLE
 #define BSP_USING_IOPAD
 #define BSP_USING_UART
-#define RT_USING_UART0
 #define RT_USING_UART1
-#define BSP_USING_SPI_LAYER
-#define BSP_USING_SPI_MSG
-#define RT_USING_SPIM0_MSG
-#define BSP_USING_I2C
-#define I2C_USE_CONTROLLER
-#define RT_USING_I2C3
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
@@ -602,6 +534,7 @@
 #define BSP_USING_GIC
 #define BSP_USING_GICV3
 #define PHYTIUM_ARCH_AARCH64
+#define ARM_SPI_BIND_CPU_ID 0
 
 /* Standalone Setting */
 
@@ -609,20 +542,26 @@
 
 /* Soc configuration */
 
-#define TARGET_PD2408
-#define SOC_NAME "pd2408"
-#define SOC_CORE_NUM 8
+#define TARGET_E2000D
+#define SOC_NAME "e2000"
+#define TARGET_TYPE_NAME "d"
+#define SOC_CORE_NUM 2
 #define F32BIT_MEMORY_ADDRESS 0x80000000
 #define F32BIT_MEMORY_LENGTH 0x80000000
 #define F64BIT_MEMORY_ADDRESS 0x2000000000
 #define F64BIT_MEMORY_LENGTH 0x800000000
+#define TARGET_E2000
 #define DEFAULT_DEBUG_PRINT_UART1
 /* end of Soc configuration */
 
 /* Board Configuration */
 
+#define E2000D_DEMO_BOARD
 #define BOARD_NAME "demo"
-#define CUS_DEMO_BOARD
+
+/* IO mux configuration when board start up */
+
+/* end of IO mux configuration when board start up */
 /* end of Board Configuration */
 
 /* Sdk common configuration */

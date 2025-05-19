@@ -58,7 +58,7 @@ if GetDepend(['TARGET_PD2408']):
 if GetDepend(['E2000D_DEMO_BOARD']):
     path += cwd + '/fboard_port/e2000d_demo'
 
-if GetDepend(['E2000D_DEMO_BOARD']):
+if GetDepend(['E2000Q_DEMO_BOARD']):
     path += cwd + '/fboard_port/e2000q_demo'
 
 if GetDepend(['FIREFLY_DEMO_BOARD']):  
@@ -193,12 +193,20 @@ if GetDepend(['FIREFLY_DEMO_BOARD']):
     if GetDepend(['BSP_USING_SDIF']):
         src += Glob(PHYTIUM_SDK_DIR+'/board/firefly/fsdif_timing.c')
 
-if GetDepend(['CUS_DEMO_BOARD']):
+if GetDepend(['PD2408_TEST_A_BOARD']):
     src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_a/fio_mux.c')
     path += [PHYTIUM_SDK_DIR + '/board/pd2408_test_a/']
 
     if GetDepend(['BSP_USING_SDIF']):
         src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_a/fsdif_timing.c')
+
+if GetDepend(['PD2408_TEST_B_BOARD']):
+    src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_b/fio_mux.c')
+    path += [PHYTIUM_SDK_DIR + '/board/pd2408_test_b/']
+
+    if GetDepend(['BSP_USING_SDIF']):
+        src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_b/fsdif_timing.c')
+
 
 LIBS    = []
 LIBPATH = []
