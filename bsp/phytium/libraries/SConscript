@@ -94,6 +94,15 @@ if GetDepend(['BSP_USING_UART']):
     src += Glob(PHYTIUM_SDK_DIR+'/drivers/serial/fpl011/*.c') + Glob(PORT_DRV_DIR+'/drv_usart.c')
     path += [PHYTIUM_SDK_DIR + '/drivers/serial/fpl011'] 
 
+
+## serial_v2
+if GetDepend(['BSP_USING_UART_MSG']):
+    src += Glob(PHYTIUM_SDK_DIR+'/drivers/serial/fpl011/*.c')
+    src += Glob(PHYTIUM_SDK_DIR+'/drivers/serial/fserial_v2_0/*.c') + Glob(PORT_DRV_DIR+'/drv_usart_msg.c')
+    path += [PHYTIUM_SDK_DIR + '/drivers/serial/fpl011'] 
+    path += [PHYTIUM_SDK_DIR + '/drivers/serial/fserial_v2_0'] +  [PHYTIUM_SDK_DIR + '/drivers/msg/']
+
+
 ## can
 if GetDepend(['BSP_USING_CAN']):
     src += Glob(PHYTIUM_SDK_DIR+'/drivers/can/fcan/*.c') + Glob(PORT_DRV_DIR+'/drv_can.c')
@@ -185,6 +194,21 @@ if GetDepend(['E2000Q_DEMO_BOARD']):
 
     if GetDepend(['BSP_USING_SDIF']):
         src += Glob(PHYTIUM_SDK_DIR+'/board/e2000q_demo/fsdif_timing.c')
+
+if GetDepend(['PD2408_TEST_A_BOARD']):
+    src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_a/fio_mux.c')
+    path += [PHYTIUM_SDK_DIR + '/board/pd2408_test_a/']
+
+    if GetDepend(['BSP_USING_SDIF']):
+        src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_a/fsdif_timing.c')
+
+if GetDepend(['PD2408_TEST_B_BOARD']):
+    src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_b/fio_mux.c')
+    path += [PHYTIUM_SDK_DIR + '/board/pd2408_test_b/']
+
+    if GetDepend(['BSP_USING_SDIF']):
+        src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_b/fsdif_timing.c')
+
 
 if GetDepend(['FIREFLY_DEMO_BOARD']):
     src += Glob(PHYTIUM_SDK_DIR+'/board/firefly/fio_mux.c')

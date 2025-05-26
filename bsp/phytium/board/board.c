@@ -163,9 +163,9 @@ void rt_hw_board_aarch64_init(void)
 
     rt_hw_gtimer_init();
 
-    FEarlyUartProbe();
-
     FIOMuxInit();
+
+    FEarlyUartProbe();
 
     /* compoent init */
 #ifdef RT_USING_COMPONENTS_INIT
@@ -274,3 +274,22 @@ void rt_hw_board_init(void)
 #endif
 }
 
+
+void rt_hw_console_output(const char *str)
+{
+    rt_size_t i = 0, size = 0;
+    char a = '\r';
+    rt_enter_critical();
+    
+    size = rt_strlen(str);
+    for( i = 0; i < size; i++)
+    {
+        if (*(str + i) == '\n')
+        {
+            OutByte(a);
+        }
+        OutByte(*(str + i));
+    }
+
+    rt_exit_critical();
+}

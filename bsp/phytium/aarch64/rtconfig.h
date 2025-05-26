@@ -434,9 +434,29 @@
 
 /* end of STM32 HAL & SDK Drivers */
 
+/* Infineon HAL Packages */
+
+/* end of Infineon HAL Packages */
+
 /* Kendryte SDK */
 
 /* end of Kendryte SDK */
+
+/* WCH HAL & SDK Drivers */
+
+/* end of WCH HAL & SDK Drivers */
+
+/* AT32 HAL & SDK Drivers */
+
+/* end of AT32 HAL & SDK Drivers */
+
+/* HC32 DDL Drivers */
+
+/* end of HC32 DDL Drivers */
+
+/* NXP HAL & SDK Drivers */
+
+/* end of NXP HAL & SDK Drivers */
 /* end of HAL & SDK Drivers */
 
 /* sensors drivers */
@@ -524,6 +544,7 @@
 /* On-chip Peripheral Drivers */
 
 #define BSP_USING_IOPAD
+#define BSP_USING_UART_LAYER
 #define BSP_USING_UART
 #define RT_USING_UART1
 /* end of On-chip Peripheral Drivers */
@@ -534,7 +555,6 @@
 #define BSP_USING_GIC
 #define BSP_USING_GICV3
 #define PHYTIUM_ARCH_AARCH64
-#define ARM_SPI_BIND_CPU_ID 0
 
 /* Standalone Setting */
 
@@ -542,22 +562,20 @@
 
 /* Soc configuration */
 
-#define TARGET_E2000D
-#define SOC_NAME "e2000"
-#define TARGET_TYPE_NAME "d"
-#define SOC_CORE_NUM 2
+#define TARGET_PD2408
+#define SOC_NAME "pd2408"
+#define SOC_CORE_NUM 8
 #define F32BIT_MEMORY_ADDRESS 0x80000000
 #define F32BIT_MEMORY_LENGTH 0x80000000
 #define F64BIT_MEMORY_ADDRESS 0x2000000000
 #define F64BIT_MEMORY_LENGTH 0x800000000
-#define TARGET_E2000
 #define DEFAULT_DEBUG_PRINT_UART1
 /* end of Soc configuration */
 
 /* Board Configuration */
 
-#define E2000D_DEMO_BOARD
-#define BOARD_NAME "demo"
+#define BOARD_NAME "test_a"
+#define PD2408_TEST_A_BOARD
 
 /* IO mux configuration when board start up */
 

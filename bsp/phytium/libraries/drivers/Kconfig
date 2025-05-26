@@ -13,25 +13,53 @@ menu "On-chip Peripheral Drivers"
         bool "Enable IOPAD"
         default y
 
-    menuconfig BSP_USING_UART
-        bool "Enable UART"
-        default y
+    
+    menuconfig BSP_USING_UART_LAYER
+        bool "Enable Uart Layer"
+        default n
         select USE_SERIAL # sdk serial component
         select RT_USING_SERIAL
-        if BSP_USING_UART
-            config RT_USING_UART0
-                bool "Enable UART0"
-                default n
-            config RT_USING_UART1
-                bool "Enable UART1"
-                default y
-            config RT_USING_UART2
-                bool "Enable UART2"
-                default n
-            config RT_USING_UART3
-                bool "Enable UART3"
-                default n
+        if BSP_USING_UART_LAYER
+            choice
+                prompt "Select Uart Mode"
+                config BSP_USING_UART
+                    bool "Standard Uart"
+                    help
+                        Use standard uart communication mode
+                config BSP_USING_UART_MSG
+                    bool "message-based Uart"
+                    help
+                        Use message-based uart communication
+            endchoice
+
+            if BSP_USING_UART
+                config RT_USING_UART0
+                    bool "Enable UART0"
+                    default n
+                config RT_USING_UART1
+                    bool "Enable UART1"
+                    default y
+                config RT_USING_UART2
+                    bool "Enable UART2"
+                    default n
+                config RT_USING_UART3
+                    bool "Enable UART3"
+                    default n
+            endif
+
+            if BSP_USING_UART_MSG
+                config RT_USING_UART0_MSG
+                    bool "Enable UART0_MSG"
+                    default n
+                config RT_USING_UART1_MSG
+                    bool "Enable UART1_MSG"
+                    default n
+                config RT_USING_UART2_MSG
+                    bool "Enable UART2_MSG"
+                    default y
+            endif
         endif
+
         menuconfig BSP_USING_SPI_LAYER
         bool "Enable SPI Layer"
         default n
