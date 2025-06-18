@@ -43,7 +43,7 @@ choice
             config BOARD_NAME
 				string
 				default "firefly"
-            source "$SDK_DIR/board/firefly/firefly.kconfig"
+            source "$SDK_DIR/board/phytiumpi_firefly/firefly.kconfig"
         endif
 
     config PD2408_TEST_A_BOARD

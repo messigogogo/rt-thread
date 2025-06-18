@@ -18,17 +18,20 @@
 #define DBG_LVL DBG_INFO
 #include <rtdbg.h>
 
+#if defined(USE_SDIF0_TF)
 #define FS_SD_MOUNT_POINT            "/"
-#define FS_SD_DEVICE_NAME            "sd1"
-#define FS_SD_DEVICE_INDEX           1
-
-#define FS_EMMC_MOUNT_POINT          "/sd0"
-#define FS_EMMC_DEVICE_NAME          "sd0"
-#define FS_EMMC_DEVICE_INDEX         0
+#define FS_SD_DEVICE_NAME            "sd0"
+#define FS_SD_DEVICE_INDEX           0
+#elif defined(USE_SDIF0_EMMC)
+#define FS_EMMC_MOUNT_POINT           "/"
+#define FS_EMMC_DEVICE_NAME           "sd0"
+#define FS_EMMC_DEVICE_INDEX          0
+#endif
 
 extern void sdif_change(rt_uint32_t id);
-extern rt_int32_t sdif_card_inserted(rt_uint32_t id);
 
+#if defined(USE_SDIF0_TF)
+extern rt_int32_t sdif_card_inserted(rt_uint32_t id);
 static rt_int32_t card_inserted = 0;
 
 static void _sdcard_mount(void)
@@ -36,7 +39,6 @@ static void _sdcard_mount(void)
     rt_device_t device;
 
     device = rt_device_find(FS_SD_DEVICE_NAME);
-    rt_kprintf("rt_device_find %x \r\n", device);
     if (device == NULL)
     {
         mmcsd_wait_cd_changed(0);
@@ -50,12 +52,6 @@ static void _sdcard_mount(void)
         if (dfs_mount(FS_SD_DEVICE_NAME, FS_SD_MOUNT_POINT, "elm", 0, 0) == RT_EOK)
         {
             LOG_I("%s mount to '%s'", FS_SD_DEVICE_NAME, FS_SD_MOUNT_POINT);
-            mkdir(FS_EMMC_MOUNT_POINT, 0);
-            if (dfs_mount(FS_EMMC_DEVICE_NAME, FS_EMMC_MOUNT_POINT, "elm", 0, 0) == RT_EOK)
-            {
-                LOG_I("%s mount to '%s'", FS_EMMC_DEVICE_NAME, FS_EMMC_MOUNT_POINT);
-            }
-
             card_inserted = 1;
         }
         else
@@ -77,16 +73,12 @@ static void _sdcard_unmount(void)
 
     card_inserted = 0;
 }
-
+#endif
 static void sd_auto_mount(void *parameter)
 {
     rt_thread_mdelay(20);
 
-    /* detect eMMC */
-    mmcsd_wait_cd_changed(0);
-    sdif_change(FS_EMMC_DEVICE_INDEX);
-    mmcsd_wait_cd_changed(RT_WAITING_FOREVER);
-
+#if defined(USE_SDIF0_TF)
     if ((card_inserted == 0) && (sdif_card_inserted(FS_SD_DEVICE_INDEX) == 1))
     {
         _sdcard_mount();
@@ -106,6 +98,20 @@ static void sd_auto_mount(void *parameter)
             _sdcard_unmount();
         }
     }
+#elif defined(USE_SDIF0_EMMC)
+    mmcsd_wait_cd_changed(0);
+    sdif_change(FS_EMMC_DEVICE_INDEX);
+    mmcsd_wait_cd_changed(RT_WAITING_FOREVER);
+
+    if (dfs_mount(FS_EMMC_DEVICE_NAME, FS_EMMC_MOUNT_POINT, "elm", 0, 0) == RT_EOK)
+    {
+        LOG_I("%s mount to '%s'", FS_EMMC_DEVICE_NAME, FS_EMMC_MOUNT_POINT);
+    }
+    else
+    {
+        LOG_W("%s mount to '%s' failed!", FS_EMMC_DEVICE_NAME, FS_EMMC_MOUNT_POINT);
+    }
+#endif
 }
 
 static void sd_mount(void)

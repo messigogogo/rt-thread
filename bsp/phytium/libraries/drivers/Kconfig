@@ -60,6 +60,7 @@ menu "On-chip Peripheral Drivers"
             endif
         endif
 
+    menuconfig BSP_USING_SPI_LAYER
         menuconfig BSP_USING_SPI_LAYER
         bool "Enable SPI Layer"
         default n
@@ -305,48 +306,62 @@ menu "On-chip Peripheral Drivers"
                 default n
         endif
 
-    menuconfig BSP_USING_SDIF
-        bool "Enable SDIF"
+    menuconfig BSP_USING_SDIF_LAYER
+        bool "Enable SDIF Layer"
         default n
         select RT_USING_SDIO
-    
-        if BSP_USING_SDIF
-                config BSP_USING_SDCARD_FATFS
-                    bool "Enable SDCARD (FATFS)"
-                    select RT_USING_DFS_ELMFAT
-                    default n
-    
+
+        if BSP_USING_SDIF_LAYER
+            config BSP_USING_SDCARD_FATFS
+                bool "Enable SDCARD (FATFS)"
+                select RT_USING_DFS_ELMFAT
+                default n
+
+            choice
+                prompt "Select SD Mode"
+                default BSP_USING_SDIF
+                config BSP_USING_SDIF
+                    bool "Standard SD"
+                    help
+                        Use standard SD protocol
+                config BSP_USING_SDIF_MSG
+                    bool "Message-based SD"
+                    help
+                        Use message-based SD communication
+            endchoice
+
+            if (BSP_USING_SDIF || BSP_USING_SDIF_MSG)
                 config USING_SDIF0
                     bool "Use SDIF0"
+                    default n
 
                 if USING_SDIF0
                     choice 
-                    prompt "Select SD0 Usage"
-                    default USE_SDIF0_TF
+                        prompt "Select SD0 Usage"
+                        default USE_SDIF0_TF
                         config USE_SDIF0_TF
                             bool "SD0(TF)"
-
                         config USE_SDIF0_EMMC
                             bool "SD0(eMMC)"
-
                     endchoice
                 endif
-
+            endif
+            if (BSP_USING_SDIF)
                 config USING_SDIF1
                     bool "Use SDIF1"
+                    default n
 
                 if USING_SDIF1
                     choice 
-                    prompt "Select SD1 Usage"
-                    default USE_SDIF1_TF
+                        prompt "Select SD1 Usage"
+                        default USE_SDIF1_TF
                         config USE_SDIF1_TF
                             bool "SD1(TF)"
-
                         config USE_SDIF1_EMMC
                             bool "SD1(eMMC)"
                     endchoice
                 endif
-
+            endif
         endif
 
         menuconfig BSP_USING_DC

@@ -89,6 +89,11 @@ void FDriverSdelay(u32 sec);
 #define FT_DEBUG_PRINT_D(TAG, format, ...) LOG_D(...)
 #endif
 
+#if (DBG_LEVEL >= DBG_LOG)
+#define FT_DEBUG_PRINT_V(TAG, format, ...) LOG_D(format, ##__VA_ARGS__)
+#else
+#define FT_DEBUG_PRINT_V(TAG, format, ...) LOG_D(...)
+#endif
 
 #ifdef __cplusplus
 }
