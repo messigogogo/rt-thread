@@ -85,7 +85,7 @@ void FEarlyUartProbe(void)
 #ifdef RT_USING_SMART
     config.base_address = (uintptr)rt_ioremap((void *)config.base_address, 0x2000);
 #endif
-    FPl011CfgGeneralInitialize(&early_uart, &config);
+    FPl011CfgInitialize(&early_uart, &config);
     return;
 }
 /************************** Constant Definitions *****************************/

@@ -121,6 +121,13 @@ if GetDepend(['BSP_USING_ETH']):
     src += Glob(PHYTIUM_SDK_DIR+'/drivers/eth/fxmac/*.c') + Glob(PORT_DRV_DIR+'/drv_xmac.c')
     path += [PHYTIUM_SDK_DIR + '/drivers/eth/fxmac/'] + [PHYTIUM_SDK_DIR + '/drivers/eth/fxmac/phy/']
 
+
+## eth_v2
+if GetDepend(['BSP_USING_ETH_MSG']):
+    src += Glob(PHYTIUM_SDK_DIR+'/drivers/eth/fxmac_v2_0/*.c') + Glob(PORT_DRV_DIR+'/drv_xmac_msg.c')
+    path += [PHYTIUM_SDK_DIR + '/drivers/eth/fxmac_v2_0/'] + [PHYTIUM_SDK_DIR + '/drivers/msg']
+
+
 ## sdif
 if GetDepend(['BSP_USING_SDIF']):
     src += Glob(PHYTIUM_SDK_DIR+'/drivers/mmc/fsdif/*.c') + Glob(PORT_DRV_DIR+'/drv_sdif.c')
@@ -224,21 +231,6 @@ if GetDepend(['FIREFLY_DEMO_BOARD']):
 
     if GetDepend(['BSP_USING_SDIF_LAYER']):
         src += Glob(PHYTIUM_SDK_DIR+'/board/firefly/fsdif_timing.c')
-
-if GetDepend(['PD2408_TEST_A_BOARD']):
-    src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_a/fio_mux.c')
-    path += [PHYTIUM_SDK_DIR + '/board/pd2408_test_a/']
-
-    if GetDepend(['BSP_USING_SDIF_LAYER']):
-        src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_a/fsdif_timing.c')
-
-if GetDepend(['PD2408_TEST_B_BOARD']):
-    src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_b/fio_mux.c')
-    path += [PHYTIUM_SDK_DIR + '/board/pd2408_test_b/']
-
-    if GetDepend(['BSP_USING_SDIF_LAYER']):
-        src += Glob(PHYTIUM_SDK_DIR+'/board/pd2408_test_b/fsdif_timing.c')
-
 
 LIBS    = []
 LIBPATH = []

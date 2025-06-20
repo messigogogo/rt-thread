@@ -74,7 +74,7 @@
 /* end of klibc options */
 #define RT_NAME_MAX 16
 #define RT_USING_SMP
-#define RT_CPUS_NR 2
+#define RT_CPUS_NR 8
 #define RT_ALIGN_SIZE 4
 #define RT_THREAD_PRIORITY_32
 #define RT_THREAD_PRIORITY_MAX 32
@@ -207,13 +207,36 @@
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_CAN
 #define RT_USING_I2C
 #define RT_USING_I2C_BITOPS
 #define RT_USING_NULL
 #define RT_USING_ZERO
 #define RT_USING_RANDOM
+#define RT_USING_PWM
 #define RT_USING_RTC
+#define RT_USING_SDIO
+#define RT_SDIO_STACK_SIZE 4096
+#define RT_SDIO_THREAD_PRIORITY 15
+#define RT_MMCSD_STACK_SIZE 4096
+#define RT_MMCSD_THREAD_PRIORITY 22
+#define RT_MMCSD_MAX_PARTITION 16
+#define RT_USING_SPI
+#define RT_USING_QSPI
+#define RT_USING_AUDIO
+#define RT_AUDIO_REPLAY_MP_BLOCK_SIZE 4096
+#define RT_AUDIO_REPLAY_MP_BLOCK_COUNT 2
+#define RT_AUDIO_RECORD_PIPE_SIZE 2048
+#define RT_USING_BLK
+
+/* Partition Types */
+
+#define RT_BLK_PARTITION_DFS
+#define RT_BLK_PARTITION_EFI
+/* end of Partition Types */
+#define RT_USING_PIN
 #define RT_USING_KTIME
+#define RT_LWIP_PBUF_POOL_BUFSIZE 1700
 /* end of Device Drivers */
 
 /* C/C++ and POSIX layer */
@@ -269,7 +292,6 @@
 #define RT_USING_LWIP212
 #define RT_USING_LWIP_VER_NUM 0x20102
 #define RT_LWIP_MEM_ALIGNMENT 64
-#define RT_LWIP_IGMP
 #define RT_LWIP_ICMP
 #define RT_LWIP_DNS
 
@@ -290,12 +312,12 @@
 #define RT_LWIP_TCP_SEG_NUM 40
 #define RT_LWIP_TCP_SND_BUF 8196
 #define RT_LWIP_TCP_WND 8196
-#define RT_LWIP_TCPTHREAD_PRIORITY 16
-#define RT_LWIP_TCPTHREAD_MBOX_SIZE 8
+#define RT_LWIP_TCPTHREAD_PRIORITY 12
+#define RT_LWIP_TCPTHREAD_MBOX_SIZE 256
 #define RT_LWIP_TCPTHREAD_STACKSIZE 16184
-#define RT_LWIP_ETHTHREAD_PRIORITY 12
+#define RT_LWIP_ETHTHREAD_PRIORITY 16
 #define RT_LWIP_ETHTHREAD_STACKSIZE 8192
-#define RT_LWIP_ETHTHREAD_MBOX_SIZE 8
+#define RT_LWIP_ETHTHREAD_MBOX_SIZE 256
 #define RT_LWIP_REASSEMBLY_FRAG
 #define LWIP_NETIF_STATUS_CALLBACK 1
 #define LWIP_NETIF_LINK_CALLBACK 1
@@ -547,6 +569,9 @@
 #define BSP_USING_UART_LAYER
 #define BSP_USING_UART
 #define RT_USING_UART1
+#define BSP_USING_ETH_LAYER
+#define BSP_USING_ETH_MSG
+#define RT_USING_XMAC0_MSG
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
@@ -586,6 +611,7 @@
 
 #define ELOG_LINE_BUF_SIZE 0x100
 #define LOG_DEBUG
+#define USE_NS_GTIMER
 /* end of Sdk common configuration */
 /* end of Standalone Setting */
 
