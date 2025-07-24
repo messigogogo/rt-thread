@@ -58,9 +58,9 @@ u32 GetCpuMaskToAffval(u32 *cpu_mask, u32 *cluster_id, u32 *target_list)
     *target_list = 0;
     *cluster_id = 0;
 
-    for (int i = 0; i < sizeof(cluster_ids) / sizeof(cluster_ids[0]); i++) 
+    for (int i = 0; i < sizeof(cluster_ids) / sizeof(cluster_ids[0]); i++)
     {
-        if (*cpu_mask & (1 << i)) 
+        if (*cpu_mask & (1 << i))
         {
             *cpu_mask &= ~(1 << i) ;
             *cluster_id = cluster_ids[i];

@@ -91,7 +91,7 @@ static rt_err_t uart_msg_control(struct rt_serial_device *serial, int cmd, void 
 {
     struct drv_usart_msg *uart_msg = RT_NULL;
     FUartMsg *uart_msg_ptr = RT_NULL;
-    RT_ASSERT(serial != RT_NULL); 
+    RT_ASSERT(serial != RT_NULL);
 
     uart_msg = rt_container_of(serial, struct drv_usart_msg, serial);
     uart_msg_ptr = uart_msg->handle;
@@ -133,11 +133,10 @@ void FUartMsgRecvBufferNoBlocking(FUartMsg *uart_p)
     u8 data[16] = {0};
     rt_size_t write_length = 0;
     u32 received_count = 0;
-    
+
     while (!FUartMsgRxRingBufferIsEmpty(uart_p->config.msg.regfile))
     {
         received_count += FUartMsgRxChars(&(uart_p->config.msg), data, 16);
-        
     }
 
     if(received_count > 0)

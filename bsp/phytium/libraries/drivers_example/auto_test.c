@@ -50,7 +50,7 @@ void run_all_tests() {
     rt_kprintf("\n%s aarch32 test results: \n", BOARD_NAME);
 #endif
     rt_kprintf("PASS: %d / %d\n", passed_count, test_count);
-    if (passed_count < test_count) 
+    if (passed_count < test_count)
     {
         rt_kprintf("[test_failure] example:\n");
         for (int i = 0; i < test_count; i++) {
@@ -78,7 +78,7 @@ int auto_test() {
     register_test("gpio_sample", gpio_toggle_sample);
 #endif
 #if defined BSP_USING_I2C
-#if defined (PD2408_TEST_A_BOARD) || defined (PD2408_TEST_B_BOARD) 
+#if defined (PD2408_TEST_A_BOARD) || defined (PD2408_TEST_B_BOARD)
     register_test("i2c_msg_sample", i2c_msg_sample);
 #else
     register_test("i2c_sample", i2c_sample);

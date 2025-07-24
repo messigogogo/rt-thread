@@ -46,11 +46,9 @@ int i2c_msg_sample(int argc, char *argv[])
     {
         if (read_buf[i] != write_content[i])
         {
-            return RT_ERROR;
+            return -RT_ERROR;
         }
-        
     }
-
     printf("%s\n", read_buf);
     return RT_EOK;
 }

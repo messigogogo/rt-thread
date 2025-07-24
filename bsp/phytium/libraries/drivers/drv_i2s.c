@@ -89,7 +89,7 @@ static FError FI2sEs8336Init(u32 word_length)
     FIOMuxInit();
     FIOPadSetI2sMux();
 
-    ret = FEs8336DevRegister(&fes8336.fes8336_device); 
+    ret = FEs8336DevRegister(&fes8336.fes8336_device);
     if (FT_SUCCESS != ret)
     {
         printf("ES8336 dev register failed.\r\n");

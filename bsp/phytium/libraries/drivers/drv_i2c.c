@@ -189,7 +189,7 @@ static rt_ssize_t i2c_master_xfer(struct rt_i2c_bus_device *device, struct rt_i2
     struct phytium_i2c_bus *i2c_bus;
     i2c_bus = (struct phytium_i2c_bus *)(device);
     uintptr mem_addr = 0;
-    
+
     for (i = 0; i < num; i++)
     {
         pmsg = &msgs[i];

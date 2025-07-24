@@ -131,7 +131,6 @@ rt_err_t can_loopback_sample()
     {
         rt_kprintf("Create can0_rx thread failed.\n");
     }
-        
     thread = rt_thread_create("can1_rx", can1_rx_thread, RT_NULL, 4096, 10, 10);
     if (thread != RT_NULL)
     {
@@ -195,7 +194,6 @@ rt_err_t can_loopback_sample()
             }
         }
     }
-    
 exit:
     /* print message on example run result */
     if (res == RT_EOK)

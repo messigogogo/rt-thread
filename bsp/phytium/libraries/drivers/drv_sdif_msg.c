@@ -560,7 +560,7 @@ static void sdif_send_request(struct rt_mmcsd_host *host, struct rt_mmcsd_req *r
 
     rt_err_t err = sdif_pre_request(host, req);
     if (err != RT_EOK)
-    {   
+    {
         if (err != RT_EEMPTY)
         {
             LOG_E("sdif_pre_request fail.");
@@ -583,7 +583,7 @@ static void sdif_send_request(struct rt_mmcsd_host *host, struct rt_mmcsd_req *r
         {
             LOG_E("SDIF setup DMA failed, err = 0x%x", err);
             return;
-        }        
+        }
     }
     rt_memset(req_cmd, 0, sizeof(*req_cmd));
     request->command = req_cmd;
@@ -627,7 +627,7 @@ static void sdif_set_iocfg(struct rt_mmcsd_host *host, struct rt_mmcsd_io_cfg *i
     if (0 != io_cfg->timing)
     {
         if (host_info->sd_type == SDIF_CARD_TYPE_MICRO_SD)
-        {   
+        {
             if (io_cfg->signal_voltage == MMCSD_SIGNAL_VOLTAGE_330)
             {
                 if (target_ios.ios_clock == FSDIF_CLK_SPEED_400KHZ)
@@ -780,7 +780,7 @@ static rt_err_t sdif_prepare_init_ios(FSdifMsgCtrl *const instance)
     if (FSDIF_SUCCESS != FSdifMsgSetIos(instance, &target_ios))
     {
         LOG_E("Set init IOS failed.");
-        return RT_ERROR;
+        return -RT_ERROR;
     }
 
     instance->cur_ios.ios_power_mode = FSDIF_MMC_POWER_ON;
@@ -801,9 +801,9 @@ static rt_err_t sdif_prepare_init_volt(FSdifMsgCtrl *const instance, rt_uint32_t
     }
 
     if (FSDIF_SUCCESS != FSdifMsgSetVoltage(instance, &target_volt))
-    {   
+    {
         LOG_E("Set init VOLT failed.");
-        return RT_ERROR;
+        return -RT_ERROR;
     }
 
     return RT_EOK;

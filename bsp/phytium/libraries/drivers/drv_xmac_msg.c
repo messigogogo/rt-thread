@@ -302,7 +302,7 @@ FError FXmacMsgSgsend(FXmacMsgOs *instance_p, struct pbuf *p)
     }
 
     /* Start transmit */
-    FXMAC_MSG_WRITE((&instance_p->instance), FXMAC_MSG_TX_PTR(0), bdindex);    
+    FXMAC_MSG_WRITE((&instance_p->instance), FXMAC_MSG_TX_PTR(0), bdindex); 
     return status;
 }
 
@@ -1057,13 +1057,11 @@ void FXmacMsgFeatureSetOptions(u32 feature, FXmacMsgCtrl* xmac_p)
 	    FXmacMsgSendMessage(xmac_p, cmd_id, cmd_subid, NULL, 0, 0);
         LOG_I("FXMAC_MSG_JUMBO_ENABLE_OPTION is ok");
     }
-    
     /* 单播 */
     if (feature & FXMAC_MSG_OS_CONFIG_UNICAST_ADDRESS_FILITER)
     {
         LOG_I("FXMAC_MSG_UNICAST_OPTION is ok");
     }
-
     /* 多播 */
     if (feature & FXMAC_MSG_OS_CONFIG_MULTICAST_ADDRESS_FILITER)
     {
@@ -1071,7 +1069,6 @@ void FXmacMsgFeatureSetOptions(u32 feature, FXmacMsgCtrl* xmac_p)
         FXmacMsgSendMessage(xmac_p, cmd_id, cmd_subid, NULL, 0, 1);
         LOG_I("FXMAC_MSG_MULTICAST_OPTION is ok");
     }
-    
     /* 全帧 */
     if (feature & FXMAC_MSG_OS_CONFIG_COPY_ALL_FRAMES)
     {
@@ -1079,7 +1076,6 @@ void FXmacMsgFeatureSetOptions(u32 feature, FXmacMsgCtrl* xmac_p)
 		FXmacMsgSendMessage(xmac_p, cmd_id, cmd_subid, NULL, 0, 0);
         LOG_I("FXMAC_MSG_PROMISC_OPTION is ok");
     }
-    
     /* 关闭FCS(帧校验序列)校验 */
     if (feature & FXMAC_MSG_OS_CONFIG_CLOSE_FCS_CHECK)
     {
@@ -1190,7 +1186,7 @@ FError FXmacMsgOsInit(FXmacMsgOs *instance_p)
     FXmacMsgGetFeatureAll(xmac_p);
 
     /* 硬件重置 */
-    FXmacMsgResetHw(xmac_p);    
+    FXmacMsgResetHw(xmac_p);
 
     /* 设置特性 */
     LOG_I("FXmacMsgFeatureSetOptions: config is %x", instance_p->config);

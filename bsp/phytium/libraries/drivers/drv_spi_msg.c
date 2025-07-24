@@ -111,7 +111,6 @@ static rt_ssize_t spim_xfer(struct rt_spi_device *device, struct rt_spi_message 
         {
             /* send message */
             tx_rx_result = FSpiMsgTransfer(xfer_spim_msg_instance, send_buf, RT_NULL, message_length);
-           
         }
         else if (send_buf != RT_NULL && recv_buf != RT_NULL)
         {
@@ -127,7 +126,7 @@ static rt_ssize_t spim_xfer(struct rt_spi_device *device, struct rt_spi_message 
     }
 
     if (message->cs_release)
-    {   
+    {
         FSpiMsgSetChipSelection(xfer_spim_msg_instance, 0);
     }
 

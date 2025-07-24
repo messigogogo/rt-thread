@@ -481,12 +481,12 @@ static void sdif_set_iocfg(struct rt_mmcsd_host *host, struct rt_mmcsd_io_cfg *i
         //         is_ddr = TRUE;
         //     }
         // }
-        
+
         // if (FSDIF_SUCCESS != FSdifSetClkFreqByCalc(&dev->hc, is_ddr, io_cfg->clock))
         // {
         //     LOG_E("FSdifSetClkFreqByCalc fail.")
         // }
-        
+
         FSdifTiming timing;
         FError ret;
         boolean is_ddr = FALSE;

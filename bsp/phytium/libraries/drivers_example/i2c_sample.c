@@ -53,11 +53,9 @@ rt_err_t i2c_sample()
     {
         if (read_buf[i] != write_content[i])
         {
-            return RT_ERROR;
+            return -RT_ERROR;
         }
-        
     }
-    
     rt_kprintf("%s\n", read_buf);
     return RT_EOK;
 }
