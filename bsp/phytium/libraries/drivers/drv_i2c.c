@@ -88,10 +88,10 @@ static rt_err_t i2c_config(struct phytium_i2c_bus *i2c_bus)
 static rt_err_t i2c_mio_config(struct phytium_i2c_bus *i2c_bus)
 {
     RT_ASSERT(i2c_bus);
-    FI2cConfig input_cfg;
-    const FI2cConfig *config_p = NULL;
-    FI2c *instance_p = &i2c_bus->i2c_handle;
     FError ret = FI2C_SUCCESS;
+    FI2cConfig i2c_config;
+    FI2c *instance_p = &i2c_bus->i2c_handle;
+    FIOPadSetMioMux(instance_p->config.instance_id);
 
     mio_handle.config = *FMioLookupConfig(instance_p->config.instance_id);
 #ifdef RT_USING_SMART
@@ -105,36 +105,35 @@ static rt_err_t i2c_mio_config(struct phytium_i2c_bus *i2c_bus)
         return -RT_ERROR;
     }
 
-    FIOPadSetMioMux(instance_p->config.instance_id);
+    /* Modify i2c configuration */
+    rt_memset(&i2c_config, 0, sizeof(i2c_config));
+    i2c_config.base_addr = FMioFuncGetAddress(&mio_handle, FMIO_FUNC_SET_I2C);
+    i2c_config.irq_num = FMioFuncGetIrqNum(&mio_handle, FMIO_FUNC_SET_I2C);
+    i2c_config.irq_prority = 0;
+    i2c_config.ref_clk_hz = FMIO_CLK_FREQ_HZ;
+    i2c_config.work_mode = FI2C_MASTER;
+    i2c_config.use_7bit_addr = TRUE;
+    i2c_config.speed_rate = FI2C_SPEED_STANDARD_RATE;
+    i2c_config.auto_calc = TRUE;
 
-    config_p = FI2cLookupConfig(FI2C_DEFAULT_ID);
-    if (NULL == config_p)
-    {
-        LOG_E("Config of mio instance %d non found.", instance_p->config.instance_id);
-        return -RT_ERROR;
-    }
+    ret = FI2cCfgInitialize(instance_p, &i2c_config);
 
-    input_cfg = *config_p;
-    input_cfg.instance_id = instance_p->config.instance_id;
-    input_cfg.base_addr = FMioFuncGetAddress(&mio_handle, FMIO_FUNC_SET_I2C);
-    input_cfg.irq_num = FMioFuncGetIrqNum(&mio_handle, FMIO_FUNC_SET_I2C);
-    input_cfg.ref_clk_hz = FMIO_CLK_FREQ_HZ;
-    ret = FI2cCfgInitialize(&i2c_bus->i2c_handle, &input_cfg);
     if (FI2C_SUCCESS != ret)
     {
         LOG_E("Init mio master failed, ret: 0x%x", ret);
         return -RT_ERROR;
     }
-    ret = FI2cSetAddress(&i2c_bus->i2c_handle, FI2C_MASTER, i2c_bus->i2c_handle.config.slave_addr);
+    ret = FI2cSetAddress(instance_p, FI2C_MASTER, instance_p->config.slave_addr);
     if (FI2C_SUCCESS != ret)
     {
         return -RT_ERROR;
     }
-    ret = FI2cSetSpeed(&i2c_bus->i2c_handle, FI2C_SPEED_STANDARD_RATE, TRUE);
+    ret = FI2cSetSpeed(instance_p, FI2C_SPEED_STANDARD_RATE, TRUE);
     if (FI2C_SUCCESS != ret)
     {
         return -RT_ERROR;
     }
+
     mio_handle.is_ready = 0;
     rt_memset(&mio_handle, 0, sizeof(mio_handle));
 

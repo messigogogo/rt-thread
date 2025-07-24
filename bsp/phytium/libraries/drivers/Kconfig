@@ -9,11 +9,16 @@ menu "On-chip Peripheral Drivers"
         bool "Enable drivers example"
         default n
 
+    if BSP_USING_DRIVERS_EXAMPLE
+        config BSP_USING_DRIVERS_AUTO_TEST
+        bool "Enable drivers example"
+        default n
+    endif
+
     config BSP_USING_IOPAD
         bool "Enable IOPAD"
         default y
 
-    
     menuconfig BSP_USING_UART_LAYER
         bool "Enable Uart Layer"
         default n
@@ -424,6 +429,7 @@ menu "On-chip Peripheral Drivers"
         bool "Enable I2S"
             default n
             select RT_USING_AUDIO
+            select BSP_USING_DEVICE
         if BSP_USING_I2S
             config RT_I2S_SAMPLERATE
                 int "The samplerate param"
@@ -433,6 +439,18 @@ menu "On-chip Peripheral Drivers"
                 default 16
             config RT_USING_I2S0
                 bool "Enable i2s0"
+                default n
+        endif
+
+        menuconfig BSP_USING_DEVICE
+        bool "Enable Device"
+            default n
+        if BSP_USING_DEVICE
+            config BSP_USING_ES8336
+                bool "Enable ES8336"
+                default n
+            config BSP_USING_ES8388
+                bool "Enable ES8388"
                 default n
         endif
 endmenu

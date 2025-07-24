@@ -74,7 +74,7 @@
 /* end of klibc options */
 #define RT_NAME_MAX 16
 #define RT_USING_SMP
-#define RT_CPUS_NR 8
+#define RT_CPUS_NR 2
 #define RT_ALIGN_SIZE 4
 #define RT_THREAD_PRIORITY_32
 #define RT_THREAD_PRIORITY_MAX 32
@@ -215,12 +215,6 @@
 #define RT_USING_RANDOM
 #define RT_USING_PWM
 #define RT_USING_RTC
-#define RT_USING_SDIO
-#define RT_SDIO_STACK_SIZE 4096
-#define RT_SDIO_THREAD_PRIORITY 15
-#define RT_MMCSD_STACK_SIZE 4096
-#define RT_MMCSD_THREAD_PRIORITY 22
-#define RT_MMCSD_MAX_PARTITION 16
 #define RT_USING_SPI
 #define RT_USING_QSPI
 #define RT_USING_AUDIO
@@ -236,7 +230,6 @@
 /* end of Partition Types */
 #define RT_USING_PIN
 #define RT_USING_KTIME
-#define RT_LWIP_PBUF_POOL_BUFSIZE 1700
 /* end of Device Drivers */
 
 /* C/C++ and POSIX layer */
@@ -456,29 +449,9 @@
 
 /* end of STM32 HAL & SDK Drivers */
 
-/* Infineon HAL Packages */
-
-/* end of Infineon HAL Packages */
-
 /* Kendryte SDK */
 
 /* end of Kendryte SDK */
-
-/* WCH HAL & SDK Drivers */
-
-/* end of WCH HAL & SDK Drivers */
-
-/* AT32 HAL & SDK Drivers */
-
-/* end of AT32 HAL & SDK Drivers */
-
-/* HC32 DDL Drivers */
-
-/* end of HC32 DDL Drivers */
-
-/* NXP HAL & SDK Drivers */
-
-/* end of NXP HAL & SDK Drivers */
 /* end of HAL & SDK Drivers */
 
 /* sensors drivers */
@@ -561,7 +534,6 @@
 
 /* Hardware Drivers */
 
-#define DRV_DEBUG
 
 /* On-chip Peripheral Drivers */
 
@@ -569,9 +541,6 @@
 #define BSP_USING_UART_LAYER
 #define BSP_USING_UART
 #define RT_USING_UART1
-#define BSP_USING_ETH_LAYER
-#define BSP_USING_ETH_MSG
-#define RT_USING_XMAC0_MSG
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
@@ -587,20 +556,22 @@
 
 /* Soc configuration */
 
-#define TARGET_PD2408
-#define SOC_NAME "pd2408"
-#define SOC_CORE_NUM 8
+#define TARGET_PE2202
+#define SOC_NAME "pe220x"
+#define TARGET_TYPE_NAME "pe2202"
+#define SOC_CORE_NUM 2
 #define F32BIT_MEMORY_ADDRESS 0x80000000
 #define F32BIT_MEMORY_LENGTH 0x80000000
 #define F64BIT_MEMORY_ADDRESS 0x2000000000
 #define F64BIT_MEMORY_LENGTH 0x800000000
+#define TARGET_PE220X
 #define DEFAULT_DEBUG_PRINT_UART1
 /* end of Soc configuration */
 
 /* Board Configuration */
 
-#define BOARD_NAME "test_a"
-#define PD2408_TEST_A_BOARD
+#define E2000D_DEMO_BOARD
+#define BOARD_NAME "pe2202_demo"
 
 /* IO mux configuration when board start up */
 

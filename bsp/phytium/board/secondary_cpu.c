@@ -40,10 +40,10 @@
 #include "fpsci.h"
 rt_uint64_t rt_cpu_mpidr_early[] =
 {
-#if defined(TARGET_E2000D)
+#if defined(TARGET_PE2202)
     [0] = RT_CORE_AFF(0),
     [1] = RT_CORE_AFF(1),
-#elif defined(TARGET_E2000Q) || defined(TARGET_PHYTIUMPI)
+#elif defined(TARGET_PE2204)
     [0] = RT_CORE_AFF(0),
     [1] = RT_CORE_AFF(1),
     [2] = RT_CORE_AFF(2),

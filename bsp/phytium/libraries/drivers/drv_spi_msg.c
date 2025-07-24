@@ -66,10 +66,6 @@ static rt_err_t spim_configure(struct rt_spi_device *device,
     {
         set_input_cfg->n_bytes = FSPIM_1_BYTE;
     }
-    else if (configuration->data_width == 16)
-    {
-        set_input_cfg->n_bytes = FSPIM_2_BYTE;
-    }
 
     /* send spi_cfg to RT-Thread sys */
     ret = FSpiMsgCfgInitialize(&user_data_cfg->spim_msg_instance, set_input_cfg);
@@ -101,7 +97,7 @@ static rt_ssize_t spim_xfer(struct rt_spi_device *device, struct rt_spi_message 
 
     if (message->cs_take)
     {
-        FSpiMsgSetCs(xfer_spim_msg_instance, 1);
+        FSpiMsgSetChipSelection(xfer_spim_msg_instance, 1);
     }
 
     if (message_length > 0)
@@ -132,7 +128,7 @@ static rt_ssize_t spim_xfer(struct rt_spi_device *device, struct rt_spi_message 
 
     if (message->cs_release)
     {   
-        FSpiMsgSetCs(xfer_spim_msg_instance, 0);
+        FSpiMsgSetChipSelection(xfer_spim_msg_instance, 0);
     }
 
     return message_length;
@@ -191,27 +187,15 @@ int rt_hw_spi_init(void)
 {
 #ifdef RT_USING_SPIM0_MSG
     spi0_bus.name = "SPI0";
-    spi0_bus.spim_msg_instance.spi_msg_config.instance_id = FSPI0_ID;
-    FIOPadSetSpimMux(FSPI0_ID);
+    spi0_bus.spim_msg_instance.spi_msg_config.instance_id = FSPI0_MSG_ID;
+    FIOPadSetSpimMux(FSPI0_MSG_ID);
     spi_init(&spi0_bus);
 #endif
 #ifdef RT_USING_SPIM1_MSG
     spi1_bus.name = "SPI1";
-    spi1_bus.spim_msg_instance.spi_msg_config.instance_id = FSPI1_ID;
-    FIOPadSetSpimMux(FSPI1_ID);
+    spi1_bus.spim_msg_instance.spi_msg_config.instance_id = FSPI1_MSG_ID;
+    FIOPadSetSpimMux(FSPI1_MSG_ID);
     spi_init(&spi1_bus);
-#endif
-#ifdef RT_USING_SPIM2_MSG
-    spi2_bus.name = "SPI2";
-    spi2_bus.spim_msg_instance.spi_msg_config.instance_id = FSPI2_ID;
-    FIOPadSetSpimMux(FSPI2_ID);
-    spi_init(&spi2_bus);
-#endif
-#ifdef RT_USING_SPIM3_MSG
-    spi3_bus.name = "SPI3";
-    spi3_bus.spim_msg_instance.spi_msg_config.instance_id = FSPI3_ID;
-    FIOPadSetSpimMux(FSPI3_ID);
-    spi_init(&spi3_bus);
 #endif
 
     return 0;

@@ -55,7 +55,7 @@ void FEarlyUartProbe(void)
 
     FIOPadSetUartMux(EARLY_UART_CTRL_ID);
 
-    FUartMsgCfgGeneralInitialize(&early_uart, &config);
+    FUartMsgCfgInitialize(&early_uart, &config);
     FUartMsgSetStartUp(&early_uart);
     return;
 }

@@ -3,6 +3,7 @@
     #include"rtconfig.h"
     #include <rtthread.h>
     #include <rtdevice.h>
+    #include "auto_test.h"
     #include "interrupt.h"
     #if defined(BSP_USING_SPI)
         #define LOG_TAG      "spi_drv"
@@ -29,7 +30,7 @@
 
 static struct rt_spi_device spi_flash_device;
 /* spi test example */
-static void fspim_test_sample(int argc, char *argv[])
+rt_err_t fspim_test_sample()
 {
     static struct rt_spi_device *spi_device = RT_NULL;
     static struct rt_spi_device *spi_bus = RT_NULL;

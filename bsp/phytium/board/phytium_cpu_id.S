@@ -18,7 +18,7 @@
 #ifndef __aarch64__
 .globl cpu_id_mapping
 cpu_id_mapping:
-#if defined(TARGET_E2000Q) || defined(TARGET_PHYTIUMPI)
+#if defined(TARGET_PE2204)
 cmp r0, #0 // compare cpu_id with 0
 beq map_cpu_id_0
 cmp r0, #1 // compare cpu_id with 1
@@ -31,7 +31,7 @@ mov pc, lr // no mapping needed
 #endif
 mov pc, lr // no mapping needed
 
-// Mapping for E2000Q
+// Mapping for PE2204
 map_cpu_id_0:
 mov r0, #2
 mov pc, lr
@@ -105,7 +105,7 @@ return:
 
 .globl cpu_id_mapping
 cpu_id_mapping:
-#if defined(TARGET_E2000Q) || defined(TARGET_PHYTIUMPI)
+#if defined(TARGET_PE2204)
 cmp x0, #0 // compare cpu_id with 0
 beq map_cpu_id_0
 cmp x0, #1 // compare cpu_id with 1
@@ -118,7 +118,7 @@ RET // no mapping needed
 #endif
 RET // no mapping needed
 
-// Mapping for E2000Q
+// Mapping for PE2204
 map_cpu_id_0:
 mov x0, #2
 RET

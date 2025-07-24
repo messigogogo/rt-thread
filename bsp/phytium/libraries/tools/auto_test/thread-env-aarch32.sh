@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export RTT_CC=gcc
-export RTT_EXEC_PATH=$(pwd)/tools/gcc-arm-10.3-2021.07-x86_64-arm-none-eabi/bin
+export RTT_EXEC_PATH=/home/gitlab-runner/cross_compile_chain/phytium-dev-linux-x64/cross_tool/gcc-arm-10.3-2021.07-x86_64-arm-none-eabi/bin
 export RTT_CC_PREFIX=arm-none-eabi-
 export PATH=$PATH:$RTT_EXEC_PATH
 

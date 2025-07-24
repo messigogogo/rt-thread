@@ -465,43 +465,44 @@ static void sdif_set_iocfg(struct rt_mmcsd_host *host, struct rt_mmcsd_io_cfg *i
 
     if (0 != io_cfg->clock)
     {
-        boolean is_ddr = FALSE;
-        if (host->card->type == CARD_TYPE_MMC)
-        {
-            if (io_cfg->timing == MMCSD_TIMING_MMC_HS400 ||
-                io_cfg->timing ==  MMCSD_TIMING_MMC_HS400_ENH_DS)
-            {
-                is_ddr = TRUE;
-            }
-        }
-        else if (host->card->type == CARD_TYPE_SD)
-        {
-            if (io_cfg->timing == MMCSD_TIMING_UHS_DDR50)
-            {
-                is_ddr = TRUE;
-            }
-        }
-        
-        if (FSDIF_SUCCESS != FSdifSetClkFreqByCalc(&dev->hc, is_ddr, io_cfg->clock))
-        {
-            LOG_E("FSdifSetClkFreqByCalc fail.")
-        }
-        
-        // FSdifTiming timing;
         // boolean is_ddr = FALSE;
-        // memset(&timing, 0U, sizeof(timing));
-        // /* Get the timing setting based on the clock frequency and device removability */
-        // ret = FSdifGetTimingSetting(io_cfg->clock, sdif->config.non_removable, &timing);
-        // if (ret != FT_SUCCESS)
+        // if (host->card->type == CARD_TYPE_MMC)
         // {
-        //     LOG_E("Failed to find timing for clock-%d", io_cfg->clock);
+        //     if (io_cfg->timing == MMCSD_TIMING_MMC_HS400 ||
+        //         io_cfg->timing ==  MMCSD_TIMING_MMC_HS400_ENH_DS)
+        //     {
+        //         is_ddr = TRUE;
+        //     }
         // }
-        // /* Set the clock frequency using the obtained timing setting */
-        // ret = FSdifSetClkFreqByDict(sdif, FALSE, &timing, io_cfg->clock);
-        // if (ret != FT_SUCCESS)
+        // else if (host->card->type == CARD_TYPE_SD)
         // {
-        //     LOG_E("FSdifSetClkFreq fail.");
+        //     if (io_cfg->timing == MMCSD_TIMING_UHS_DDR50)
+        //     {
+        //         is_ddr = TRUE;
+        //     }
         // }
+        
+        // if (FSDIF_SUCCESS != FSdifSetClkFreqByCalc(&dev->hc, is_ddr, io_cfg->clock))
+        // {
+        //     LOG_E("FSdifSetClkFreqByCalc fail.")
+        // }
+        
+        FSdifTiming timing;
+        FError ret;
+        boolean is_ddr = FALSE;
+        memset(&timing, 0U, sizeof(timing));
+        /* Get the timing setting based on the clock frequency and device removability */
+        ret = FSdifGetTimingSetting(io_cfg->clock, sdif->config.non_removable, &timing);
+        if (ret != FT_SUCCESS)
+        {
+            LOG_E("Failed to find timing for clock-%d", io_cfg->clock);
+        }
+        /* Set the clock frequency using the obtained timing setting */
+        ret = FSdifSetClkFreqByDict(sdif, FALSE, &timing, io_cfg->clock);
+        if (ret != FT_SUCCESS)
+        {
+            LOG_E("FSdifSetClkFreq fail.");
+        }
     }
 
     switch (io_cfg->bus_width)

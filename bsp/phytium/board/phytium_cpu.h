@@ -32,7 +32,7 @@
     #define MAX_HANDLERS 160
 #endif
 
-#if defined(TARGET_E2000)
+#if defined(TARGET_PE220X)
     #define MAX_HANDLERS 270
 #endif
 

@@ -1,3 +1,5 @@
+include .config
+
 .PHONY: debug boot all clean menuconfig
 
 CC = $(RTT_EXEC_PATH)/$(RTT_CC_PREFIX)gcc
@@ -13,16 +15,25 @@ OD = $(RTT_EXEC_PATH)/$(RTT_CC_PREFIX)objdump
 
 boot:
 	make all
-	cp rtthread_a64.elf /mnt/d/tftpboot
-	cp rtthread_a64.bin /mnt/d/tftpboot
+	make mv_file
+
+mv_file:
+	mv rtthread_a32.elf rtthread_a32_$(CONFIG_BOARD_NAME).elf 
+	mv rtthread_a32.bin rtthread_a32_$(CONFIG_BOARD_NAME).bin 
+	cp rtthread_a32_$(CONFIG_BOARD_NAME).elf /mnt/d/tftpboot/rtthread_a32.elf
+	cp rtthread_a32_$(CONFIG_BOARD_NAME).bin /mnt/d/tftpboot/rtthread_a32.bin
+
+mv_auto_test_file:
+	mv rtthread_a32.elf rtthread_a32_$(CONFIG_BOARD_NAME).elf
+	mv rtthread_a32_$(CONFIG_BOARD_NAME).elf /home/zhugy/tftpboot/rtthread_elfs/
 
 debug:
-	@$(OD) -D rtthread_a64.elf > rtthread_a64.asm
-	@$(OD) -S rtthread_a64.elf > rtthread_a64.dis
+	@$(OD) -D rtthread_a32_$(CONFIG_BOARD_NAME).elf > rtthread_a32_$(CONFIG_BOARD_NAME).asm
+	@$(OD) -S rtthread_a32_$(CONFIG_BOARD_NAME).elf > rtthread_a32_$(CONFIG_BOARD_NAME).dis
 
 all:
 	@echo "Build started..."
-	scons -j8
+	scons -j1024
 
 clean:
 	@echo "Cleaning..."

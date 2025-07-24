@@ -102,7 +102,7 @@ static rt_err_t phytium_i2c_set_speed(struct phytium_i2c_msg_bus *i2c_bus, rt_ui
             return -RT_EIO;
     }
 
-    FI2cMsgSetBusSpeed(instance_p, instance_p->speed_mode);
+    FI2cMsgSetBusSpeed(instance_p, instance_p->speed_mode, TRUE);
 
     return RT_EOK;
 }

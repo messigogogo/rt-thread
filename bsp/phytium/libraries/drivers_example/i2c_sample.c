@@ -4,7 +4,7 @@
 #include "drv_i2c.h"
 #define TEST_DEVICE_ADDR 0x53
 static struct rt_i2c_bus_device *i2c_test_bus = RT_NULL;
-int i2c_sample(int argc, char *argv[])
+rt_err_t i2c_sample()
 {
     rt_uint8_t write_content[] = {"Phytium Rt-thread I2C Driver Test Successfully !!"};
     rt_uint8_t write_addr[2] = {0x0, 0x0};
@@ -49,6 +49,15 @@ int i2c_sample(int argc, char *argv[])
     read_msgs.len = sizeof(read_buf);
     rt_i2c_transfer(i2c_test_bus, &read_msgs, 1);
 
+    for (rt_uint8_t i = 0; i < sizeof(write_content); i++)
+    {
+        if (read_buf[i] != write_content[i])
+        {
+            return RT_ERROR;
+        }
+        
+    }
+    
     rt_kprintf("%s\n", read_buf);
     return RT_EOK;
 }

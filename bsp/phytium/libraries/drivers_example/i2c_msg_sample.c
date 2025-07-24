@@ -42,6 +42,15 @@ int i2c_msg_sample(int argc, char *argv[])
     read_msgs.len = sizeof(read_buf);
     rt_i2c_transfer(i2c_test_bus, &read_msgs, 1);
 
+    for (rt_uint8_t i = 0; i < sizeof(write_content); i++)
+    {
+        if (read_buf[i] != write_content[i])
+        {
+            return RT_ERROR;
+        }
+        
+    }
+
     printf("%s\n", read_buf);
     return RT_EOK;
 }

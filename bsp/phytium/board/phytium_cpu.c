@@ -19,10 +19,10 @@
 
 rt_uint64_t rt_cpu_mpidr_table[] =
 {
-#if defined(TARGET_E2000D)
+#if defined(TARGET_PE2202)
     [0] = RT_CORE_AFF(0),
     [1] = RT_CORE_AFF(1),
-#elif defined(TARGET_E2000Q) || defined(TARGET_PHYTIUMPI)
+#elif defined(TARGET_PE2204)
     [0] = RT_CORE_AFF(0),
     [1] = RT_CORE_AFF(1),
     [2] = RT_CORE_AFF(2),
@@ -49,7 +49,7 @@ rt_uint64_t rt_cpu_mpidr_table[] =
 */
 int phytium_cpu_id_mapping(int cpu_id)
 {
-#if defined(TARGET_E2000Q) || defined(TARGET_PHYTIUMPI)
+#if defined(TARGET_PE2204)
     switch (cpu_id)
     {
         case 0:
@@ -87,7 +87,7 @@ int rt_hw_cpu_id(void)
 
 rt_uint64_t get_main_cpu_affval(void)
 {
-#if defined(TARGET_E2000Q) || defined(TARGET_PHYTIUMPI)
+#if defined(TARGET_PE2204)
     return CORE2_AFF;
 #else
     return CORE0_AFF;
