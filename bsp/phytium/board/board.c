@@ -195,7 +195,7 @@ void rt_hw_console_output(const char *str)
     rt_size_t i = 0, size = 0;
     char a = '\r';
     rt_enter_critical();
-    
+
     size = rt_strlen(str);
     for( i = 0; i < size; i++)
     {

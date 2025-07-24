@@ -1054,7 +1054,7 @@ void FXmacMsgFeatureSetOptions(u32 feature, FXmacMsgCtrl* xmac_p)
     if (feature & FXMAC_MSG_OS_CONFIG_JUMBO)
     {
         cmd_subid = FXMAC_MSG_CMD_SET_ENABLE_JUMBO;
-	    FXmacMsgSendMessage(xmac_p, cmd_id, cmd_subid, NULL, 0, 0);
+        FXmacMsgSendMessage(xmac_p, cmd_id, cmd_subid, NULL, 0, 0);
         LOG_I("FXMAC_MSG_JUMBO_ENABLE_OPTION is ok");
     }
     /* 单播 */
@@ -1072,8 +1072,8 @@ void FXmacMsgFeatureSetOptions(u32 feature, FXmacMsgCtrl* xmac_p)
     /* 全帧 */
     if (feature & FXMAC_MSG_OS_CONFIG_COPY_ALL_FRAMES)
     {
-	    cmd_subid = FXMAC_MSG_CMD_SET_ENABLE_PROMISE;
-	    FXmacMsgSendMessage(xmac_p, cmd_id, cmd_subid, NULL, 0, 0);
+        cmd_subid = FXMAC_MSG_CMD_SET_ENABLE_PROMISE;
+        FXmacMsgSendMessage(xmac_p, cmd_id, cmd_subid, NULL, 0, 0);
         LOG_I("FXMAC_MSG_PROMISC_OPTION is ok");
     }
     /* 关闭FCS(帧校验序列)校验 */
