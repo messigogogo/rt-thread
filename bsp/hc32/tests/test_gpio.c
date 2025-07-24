@@ -29,7 +29,7 @@
 #if defined(HC32F460)
     #define LED1_PIN_NUM                GET_PIN(D, 3)   /* LED0 */
     #define KEY1_PIN_NUM                GET_PIN(B, 1)   /* K10  */
-#elif defined(HC32F4A0)
+#elif defined(HC32F4A0) || defined(HC32F4A8)
     #define LED1_PIN_NUM                GET_PIN(B, 11)  /* LED10 */
     #define KEY1_PIN_NUM                GET_PIN(A, 0)   /* K10  */
 #elif defined(HC32F448)
@@ -38,6 +38,9 @@
 #elif defined(HC32F472)
     #define LED1_PIN_NUM                GET_PIN(C, 9)   /* LED5 */
     #define KEY1_PIN_NUM                GET_PIN(B, 5)   /* K10  */
+#elif defined(HC32F334)
+    #define LED1_PIN_NUM                GET_PIN(C, 13)  /* LED1 */
+    #define KEY1_PIN_NUM                GET_PIN(C, 3)   /* K1  */
 #endif
 
 static uint8_t u8LedState = 1;

@@ -193,7 +193,7 @@ int finsh_getchar(void)
     return ch;
 #endif /* RT_USING_POSIX_STDIO */
 #else
-    extern char rt_hw_console_getchar(void);
+    extern signed char rt_hw_console_getchar(void);
     return rt_hw_console_getchar();
 #endif /* RT_USING_DEVICE */
 }
@@ -535,7 +535,7 @@ static void finsh_thread_entry(void *parameter)
         }
         else if (shell->stat == WAIT_SPEC_KEY)
         {
-            if (ch == 0x5b)
+            if (ch == 0x5b || ch == 0x41 || ch == 0x42 || ch == 0x43 || ch == 0x44)
             {
                 shell->stat = WAIT_FUNC_KEY;
                 continue;

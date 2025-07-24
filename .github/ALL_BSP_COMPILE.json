@@ -17,13 +17,6 @@
       ]
     },
     {
-      "RTT_BSP": "RTduino_Arduino Libraries (STM32F412 Nucleo)",
-      "RTT_TOOL_CHAIN": "sourcery-arm",
-      "SUB_RTT_BSP": [
-        "stm32/stm32f412-st-nucleo"
-      ]
-    },
-    {
       "RTT_BSP": "RTduino_Arduino Libraries (Raspberry Pico)",
       "RTT_TOOL_CHAIN": "sourcery-arm",
       "SUB_RTT_BSP": [
@@ -53,6 +46,8 @@
         "at32/at32m412-start",
         "at32/at32m416-start",
         "hc32/ev_hc32f4a0_lqfp176",
+        "hc32/ev_hc32f4a8_lqfp176",
+        "hc32/ev_hc32f334_lqfp64",
         "hc32/ev_hc32f448_lqfp80",
         "hc32/ev_hc32f460_lqfp100_v2",
         "hc32/ev_hc32f472_lqfp100",
@@ -68,8 +63,6 @@
       "RTT_BSP": "others_ft32_mm32_acm32",
       "RTT_TOOL_CHAIN": "sourcery-arm",
       "SUB_RTT_BSP": [
-        "phytium/aarch32",
-        "qemu-vexpress-a9",
         "airm2m/air32f103",
         "acm32/acm32f0x0-nucleo",
         "acm32/acm32f0x0-nucleo",
@@ -143,6 +136,7 @@
         "stm32/stm32f103-fire-arbitrary",
         "stm32/stm32f103-gizwits-gokitv21",
         "stm32/stm32f103-hw100k-ibox",
+        "stm32/stm32f103-keysking-learning",
         "stm32/stm32f103-onenet-nbiot",
         "stm32/stm32f103-yf-ufun",
         "stm32/stm32f103-ys-f1pro",
@@ -169,6 +163,7 @@
         "stm32/stm32f411-st-nucleo",
         "stm32/stm32f411-atk-nano",
         "stm32/stm32f411-weact-blackpill",
+        "stm32/stm32f412-st-nucleo",
         "stm32/stm32f413-st-nucleo",
         "stm32/stm32f427-robomaster-a",
         "stm32/stm32f429-armfly-v6",
@@ -209,6 +204,7 @@
         "stm32/stm32h750-weact-ministm32h7xx",
         "stm32/stm32h750-fk750m1-vbt6",
         "stm32/stm32h7s7-st-disco",
+        "stm32/stm32h7r7-artpi2",
         "stm32/stm32mp157a-st-discovery",
         "stm32/stm32mp157a-st-ev1",
         "stm32/stm32u575-st-nucleo",
@@ -234,15 +230,19 @@
         "nxp/lpc/lpc54114-lite",
         "nxp/lpc/lpc176x",
         "nxp/imx/imx6sx/cortex-a9",
+        "nxp/imx/imx6ul",
         "nxp/imx/imxrt/imxrt1052-atk-commander",
         "nxp/imx/imxrt/imxrt1052-fire-pro",
         "nxp/imx/imxrt/imxrt1052-nxp-evk",
         "nxp/imx/imxrt/imxrt1052-seeed-ArchMix",
+        "nxp/imx/imxrt/imxrt1061-forlinx-OK1061-S",
         "nxp/imx/imxrt/imxrt1060-nxp-evk",
         "nxp/imx/imxrt/imxrt1064-nxp-evk",
         "nxp/imx/imxrt/imxrt1021-nxp-evk",
+        "nxp/imx/imxrt/imxrt1170-nxp-evk",
         "nxp/mcx/mcxn/frdm-mcxn947",
         "nxp/mcx/mcxn/frdm-mcxn236",
+        "nxp/mcx/mcxc/frdm-mcxc444",
         "nxp/mcx/mcxa/frdm-mcxa153",
         "nxp/mcx/mcxa/frdm-mcxa156",
         "renesas/ebf_qi_min_6m5",
@@ -251,6 +251,7 @@
         "renesas/ra6m3-ek",
         "renesas/ra6m3-hmi-board",
         "renesas/ra6e2-fpb",
+        "renesas/ra4e2-eco",
         "renesas/ra4m2-eco",
         "renesas/ra2l1-cpk",
         "renesas/ra8m1-ek",
@@ -301,6 +302,7 @@
         "gd32/arm/gd32470z-lckfb",
         "gd32/arm/gd32h759i-start",
         "gd32/arm/gd32e503v-eval",
+        "gd32/arm/gd32527I-eval",
         "n32/n32g43xcl-stb",
         "n32/n32g45xcl-stb",
         "n32/n32g45xml-stb",
@@ -338,6 +340,7 @@
         "Infineon/psoc6-cy8cproto-062S3-4343W",
         "Infineon/psoc6-evaluationkit-062S2",
         "Infineon/xmc7200-kit_xmc7200_evk",
+        "Infineon/xmc7100d-f144k4160aa",
         "fujitsu/mb9x/mb9bf500r",
         "fujitsu/mb9x/mb9bf506r",
         "fujitsu/mb9x/mb9bf618s",
@@ -370,7 +373,6 @@
       "RTT_BSP": "aarch64",
       "RTT_TOOL_CHAIN": "sourcery-aarch64",
       "SUB_RTT_BSP": [
-        "phytium/aarch64",
         "qemu-virt64-aarch64",
         "raspberry-pi/raspi3-64",
         "raspberry-pi/raspi4-64"
@@ -391,8 +393,15 @@
       "RTT_TOOL_CHAIN": "sourcery-riscv64-unknown-elf",
       "SUB_RTT_BSP": [
         "bluetrum/ab32vg1-ab-prougen",
-        "bouffalo_lab/bl60x",
-        "bouffalo_lab/bl70x"
+        "qemu-virt64-riscv",
+        "ultrarisc/ur_dp1000_evb"
+      ]
+    },
+    {
+      "RTT_BSP": "K230",
+      "RTT_TOOL_CHAIN": "riscv64-unknown-linux-musl-",
+      "SUB_RTT_BSP": [
+        "k230"
       ]
     },
     {
@@ -447,6 +456,38 @@
         "nrf5x/nrf52833",
         "nrf5x/nrf52840",
         "nrf5x/nrf5340"
+      ]
+    },
+    {
+      "RTT_BSP": "arm-none-bsp-smart",
+      "RTT_TOOL_CHAIN": "sourcery-arm",
+      "RTT_SMART_TOOL_CHAIN": "arm-linux-musleabi",
+      "SUB_RTT_BSP": [
+        "qemu-vexpress-a9",
+        "nxp/imx/imx6ull-smart"
+      ]
+    },
+    {
+      "RTT_BSP": "xuantie",
+      "RTT_TOOL_CHAIN": "sourcery-Xuantie-900-gcc-elf-newlib",
+      "SUB_RTT_BSP": [
+        "xuantie/smartl/e902",
+        "xuantie/smartl/e906",
+        "xuantie/smartl/e907",
+        "xuantie/xiaohui/c906",
+        "xuantie/xiaohui/c907",
+        "xuantie/xiaohui/c908",
+        "xuantie/xiaohui/c910",
+        "xuantie/xiaohui/r908",
+        "xuantie/xiaohui/r910",
+        "xuantie/xiaohui/r920"
+      ]
+    },
+    {
+      "RTT_BSP": "xuantie-smart",
+      "RTT_TOOL_CHAIN": "sourcery-Xuantie-900-gcc-linux-musl",
+      "SUB_RTT_BSP": [
+        "xuantie/virt64/c906"
       ]
     }
   ]
